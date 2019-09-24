@@ -1,6 +1,6 @@
-require('dotenv').config({path:'./process.env'})
+require('dotenv').config();  // 파일 이름이 .env가 아닐 경우 경로 설정 필요
 const fs = require('fs');
-const rp = require('request-promise')
+const rp = require('request-promise');
 
 let riot ={}; 
 
@@ -37,7 +37,7 @@ riot.RequestJson=(option)=>{
 
 riot.MakeJson=(data)=>{
     let json = JSON.stringify(data,null,4);
-    fs.writeFile(`./data_crawling/Name_${data.file}.json`,json,'utf8',function(err) {
+    fs.writeFile(`./data_crawling/${data.type}_${data.tier}.json`,json,'utf8',function(err) {
         if(err) {
             return err;
         }
@@ -55,6 +55,12 @@ riot.ReadJson=(fileName)=>{
             resolve(data); 
         });  
     });  
+}
+
+riot.sleep=(ms)=>{
+    return new Promise(resolve=>{
+        setTimeout(resolve,ms)
+    })
 }
 
 module.exports = riot;

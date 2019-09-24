@@ -1,5 +1,4 @@
 const riot = require('./riotModule'); // 내가 만든거
-
 const LEAGUES = [
     "/lol/league/v4/entries/RANKED_SOLO_5x5/DIAMOND/I",
     "/lol/league/v4/entries/RANKED_SOLO_5x5/DIAMOND/II",
@@ -19,13 +18,13 @@ const TakeName=(data)=>{
             data.entries.forEach(elem => {
                 newArray.push(elem.summonerName);  
             });
-            resolve({"file":data.tier,"name":newArray});
+            resolve({"type":"name","tier":data.tier,"name":newArray});
         }
         else{
             data.forEach(elem => {
                 newArray.push(elem.summonerName);  
             });
-            resolve({"file":data[0].tier+data[0].rank,"name":newArray})
+            resolve({"type":"name","tier":data[0].tier+data[0].rank,"name":newArray})
         }
     });  
 };

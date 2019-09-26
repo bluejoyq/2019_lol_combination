@@ -16,13 +16,13 @@ const TakeName=(data)=>{
         let newArray =[];
         if(typeof(data.entries)=="object"){ // entries가 비었을때의 여부로 대체바람
             data.entries.forEach(elem => {
-                newArray.push(elem.summonerName);  
+                newArray.push(elem.summonerName);
             });
             resolve({"type":"name","tier":data.tier,"name":newArray});
         }
         else{
             data.forEach(elem => {
-                newArray.push(elem.summonerName);  
+                newArray.push(elem.summonerName);
             });
             resolve({"type":"name","tier":data[0].tier+data[0].rank,"name":newArray})
         }

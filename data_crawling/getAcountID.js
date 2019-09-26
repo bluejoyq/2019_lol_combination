@@ -17,20 +17,22 @@ const Names = [
 
 let ID = [];
 
-async function TakeName(data){
-    for (const name of data.name){
+const TakeName=async(data)=>{
+    for (let name of data.name){
         await sleep(1201);
-        MakeLink(name)
-        .then(MakeLink)
+        let query= SUMMONER+name;
+
+        MakeLink(encodeURI(query)) //링크 부호화
         .then(RequestJson)
         .then((data)=>{
             ID.push(data.accountId);
         });
     }
-    MakeJson({"type": "accountId","tier": data.file,"Id":ID});
+    MakeJson({"type": "accountId","tier": data.tier,"Id":ID});
+    console.log(data.tier,"-종료");
 };
 
-async function run(){
+const run=async()=>{
     for(const names of Names){
         await ReadJson(names).then(TakeName);
     }

@@ -24,8 +24,8 @@ const TakeName=async(data)=>{
 
         MakeLink(encodeURI(query)) //링크 부호화
         .then(RequestJson)
-        .then((data)=>{
-            ID.push(data.accountId);
+        .then((return_data)=>{
+            ID.push(return_data.accountId);
         });
     }
     MakeJson({"type": "accountId","tier": data.tier,"Id":ID});
